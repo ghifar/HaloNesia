@@ -27,8 +27,8 @@ class M_category extends CI_Model {
       return $this->db->get_where('category', $parameterfilter);
     }
     function cekCategory($code){
-      $query = $this->db->get_where('category',array('category_code'=>$code));
-      return $query->num_rows();
+      return $this->db->get_where('category',array('id'=>$code));
+    
     }
     function json() {
         $this->datatables->select('c.id, c.category_code as code,c.category_name as name, c.category_description as description');

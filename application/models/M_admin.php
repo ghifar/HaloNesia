@@ -12,6 +12,18 @@ class M_admin extends CI_Model {
     $last_recore = $this->db->insert_id();
     return $last_recore;
   }
+
+  function insertAdminPlace($parameterfilter=array(),$arraydata = array())
+  {
+    $this->db->insert('admin', $arraydata);
+
+
+    $last_recore = $this->db->insert_id();
+    $masukin = array('id_admin' => $last_recore);
+    $this->db->where($parameterfilter);
+    $this->db->update('place', $masukin);
+    return $last_recore;
+  }
   function update($parameterfilter=array(), $arraydata=array() )
     {
         $this->db->where($parameterfilter);

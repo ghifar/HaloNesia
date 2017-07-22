@@ -41,6 +41,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Category</th>
                   <th>Name</th>
                   <th>Address</th>
                   <th>Phone Number</th>
@@ -62,6 +63,7 @@
   </div>
   <!-- /.content-wrapper -->
 
+  
   <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
 
@@ -72,38 +74,50 @@
     <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Tutup"><span aria-hidden="true">&times;</span></button>
 
-    <h4 class="modal-title">Add Region</h4>
+    <h4 class="modal-title">Add Region Admin</h4>
     </div>
           <div class="modal-body">
             <!--form start-->
             
             <form id="form" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="nama">Name<font color="red">*</font></label>
-              <input type="text" maxlength="3" class="form-control" id="namaAdd" name="namaAdd" placeholder="Input Place Name" required>
-            </div>
-            <div class="form-group">
-              <label for="nama">Address<font color="red">*</font></label>
-              <input type="text" class="form-control" id="addressAdd" name="addressAdd" placeholder="Input Address" required>
-            </div>
-            <div class="form-group">
-              <label for="username">Phone Number</label>
-              <input type="number" step="any" class="form-control" id="descriptionAdd" name="descriptionAdd" placeholder="Input Phone Number">
-            </div>
-            <div class="form-group">
-              <label for="username">Description<font color="red">*</font></label>
-              <textarea class="form-control" id="description" name="description" placeholder="Input Place Description" required>
-              </textarea>
-            </div>
+             <div class="form-group">
+              <div class="form-group">
+                <label for="nama">Name<font color="red">*</font></label>
+                <input type="text" class="form-control" id="namaAdd" name="namaAdd" placeholder="Input Place Name" required>
+              </div>
+              <div class="form-group">
+              <label for="region">Category<font color="red">*</font></label>
+              <select class="form-control" name="categoryAdd" id="categoryAdd">
+                <option value="def" selected disabled>- Select Category -</option>
+                <?php
 
-            <div class="form-group">
-              <label for="username">Latitude</label>
-              <input type="number" step="any" class="form-control" id="latAdd" name="latAdd" placeholder="Longitude of Location">
+                  foreach ($category->result() as $row) {
+                    echo "<option value='$row->id'>$row->category_code - $row->category_name</option>";
+                  }
+                ?>
+              </select>
             </div>
-            <div class="form-group">
-              <label for="username">Longitude</label>
-              <input type="number" step="any" class="form-control" id="longAdd" name="longAdd" placeholder="Longitude of Location">
-            </div>
+                <label for="nama">Address<font color="red">*</font></label>
+                <input type="text" class="form-control" id="addressAdd" name="addressAdd" placeholder="Input Address" required>
+              </div>
+              <div class="form-group">
+                <label for="username">Phone Number</label>
+                <input type="number" step="any" class="form-control" id="phoneNumberAdd" name="phoneNumberAdd" placeholder="Input Phone Number">
+              </div>
+              <div class="form-group">
+                <label for="username">Description<font color="red">*</font></label>
+                <textarea class="form-control" id="descriptionAdd" name="descriptionAdd" placeholder="Input Place Description" required>
+                </textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="username">Latitude</label>
+                <input type="number" step="any" class="form-control" id="latAdd" name="latAdd" placeholder="Longitude of Location">
+              </div>
+              <div class="form-group">
+                <label for="username">Longitude</label>
+                <input type="number" step="any" class="form-control" id="longAdd" name="longAdd" placeholder="Longitude of Location">
+              </div>
             <!--end form-->
             <button type="submit" class="btn btn-primary" id="submit" style="float:right">Submit</button>
           </form>
@@ -118,6 +132,7 @@
       </div>
 
     </div>
+    <!-- end modal -->
     
     <!-- end modal -->
 
@@ -136,9 +151,21 @@
             <div class="modal-body">
               <!--form start-->
               <form id="formEdit" enctype="multipart/form-data">
+              <div class="form-group">
+              <label for="region">Category<font color="red">*</font></label>
+              <select class="form-control" name="categoryEdit" id="categoryEdit">
+                <option value="def">- Select Category -</option>
+                <?php
+
+                  foreach ($category->result() as $row) {
+                    echo "<option value='$row->id'>$row->category_code - $row->category_name</option>";
+                  }
+                ?>
+              </select>
+            </div>
             <div class="form-group">
               <label for="nama">Name<font color="red">*</font></label>
-              <input type="text" minlength="6" class="form-control" id="namaEdit" name="namaEdit" placeholder="Input Name" required>
+              <input type="text" class="form-control" id="namaEdit" name="namaEdit" placeholder="Input Name" required>
             </div>
             <div class="form-group">
               <label for="nama">Address<font color="red">*</font></label>
@@ -150,7 +177,8 @@
             </div>
             <div class="form-group">
               <label for="region">Description<font color="red">*</font></label>
-               <input type="text" class="form-control" id="descriptionEdit" name="descriptionEdit" placeholder="Input Description" required>
+                <textarea class="form-control" id="descriptionEdit" name="descriptionEdit" placeholder="Input Place Description" required>
+                </textarea>
             </div>
               <div class="form-group">
               <label for="username">Latitude</label>
@@ -222,6 +250,7 @@ var id_place;
                           "data": "id",
                           "orderable": false
                       },
+                      {"data": "categoryName"},
                       {"data": "name"},
                       {"data": "address"},
                       {"data": "phoneNumber"},
@@ -315,6 +344,7 @@ var id_place;
         dataType: "JSON",
         success: function(data)
         {
+          $('categoryEdit').val(data.id_reg_category);
           $('#namaEdit').val(data.name);
           $('#address').val(data.address);
           $('#phoneNumber').val(data.phone_number);

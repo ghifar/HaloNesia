@@ -8,10 +8,13 @@ class M_places extends CI_Model {
 
      function insert($arraydata = array() )
   {
-    $this->db->insert('admin', $arraydata);
+    $this->db->insert('place', $arraydata);
+
     $last_recore = $this->db->insert_id();
     return $last_recore;
   }
+
+  
   function update($parameterfilter=array(), $arraydata=array() )
     {
         $this->db->where($parameterfilter);
@@ -27,6 +30,16 @@ class M_places extends CI_Model {
       return $this->db->get_where('place', $parameterfilter);
     }
 
+
+    function getRegionPlaces($id_region){ 
+     $this->db->select('p.id_place, p.name,c.category_name'); 
+     $this->db->from('place p'); 
+     $this->db->join('reg_category rc','rc.id = p.id_reg_category');
+     $this->db->join('category c','rc.id_category = c.id'); 
+     $this->db->where("rc.id_region = $id_region");
+     $this->db->where(array('p.id_admin' => NULL)); 
+     return $this->db->get();
+    }
     
     
 }

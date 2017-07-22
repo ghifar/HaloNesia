@@ -12,8 +12,11 @@ class Places extends CI_Controller {
 		{
 			$cek = $this->session->userdata('role');
 			if($cek == '2'){
+				$id= $this->session->userdata('region');
 
-				$this->load->model(array('M_region','M_places'));
+				$this->load->model(array('M_region','M_places','M_category','M_reg_category'));
+				// $data['category'] = $this->M_category->get(null);
+				$data['category'] = $this->M_reg_category->getRegionCategory($id);
 				// $data['id'] = $this->M_region->get(null);
 
 			// $id = $this->session->userdata('region');
@@ -48,24 +51,17 @@ class Places extends CI_Controller {
     	// $id = $this->input->post('id');
 	     	$id = $this->session->userdata('region');
     	$data = array(
-			'name' => $$this->input->post('namaAdd'),
-			'description' => trim($this->input->post('descriptionAdd')),
+    		'id_admin'=> null,
+    		'id_reg_category'=>$this->input->post('categoryAdd'),
+			'name' => $this->input->post('namaAdd'),
+			'description' => $this->input->post('descriptionAdd'),
 			'phone_number' => $this->input->post('phoneNumberAdd'),
 			'address' => $this->input->post('addressAdd'),
 			'latitude' => $this->input->post('latAdd'),
 			'longitude' => $this->input->post('longAdd'),
 		);
-		// if(strlen($code) != 3){
-		// 	echo "Code must be 3 digits";
-		// }
-		// else if ($this->M_region->cekRegion($code) > 0)
-	 //    {
-  //           echo "Code already exists!";
-	 //    }
-	 //    else{
-			// $cek = $this->M_region->insert($data);
-			// $cek = $this->M_places->update(array('id_place'=>$id),$data);
-    	$cek = $this->M_places->insert(array('id_reg_category'=>$id),$data);
+	
+    	$cek = $this->M_places->insert($data);
 			echo "berhasil";
 		// }
 	}
@@ -73,6 +69,7 @@ class Places extends CI_Controller {
 		$id = $this->input->post('id');
 		// $code = strtoupper(trim($this->input->post('codeEdit')));
     	$data = array(
+    		'id_reg_category'=>$this->input->post('categoryEdit'),
 			'name' => trim($this->input->post('namaEdit')),
 			'description' => $this->input->post('descriptionEdit'),
 			'phone_number' => $this->input->post('phoneNumber'),
@@ -113,6 +110,8 @@ class Places extends CI_Controller {
 		$id = $this->input->post('id');
 		$data = $this->M_places->get(array('id_place'=>$id));
 		echo json_encode($data->row());
+		
+
 	}
 
 		

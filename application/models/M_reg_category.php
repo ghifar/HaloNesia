@@ -26,6 +26,15 @@ class M_reg_category extends CI_Model {
     public function get($parameterfilter=array()){
       return $this->db->get_where('reg_category', $parameterfilter);
     }
+
+    function getRegionCategory($id_region){ 
+     $this->db->select('rc.id, c.category_code,c.category_name'); 
+     $this->db->from('reg_category rc'); 
+     $this->db->join('category c','rc.id_category = c.id'); 
+     $this->db->where("rc.id_region = $id_region"); 
+     return $this->db->get();
+    }
+
     function cekRegCategory($parameterfilter=array()){
       $query = $this->db->get_where('reg_category',$parameterfilter);
       return $query->num_rows();
