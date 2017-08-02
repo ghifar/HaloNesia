@@ -20,6 +20,7 @@
     </style>
 
     <!-- Main content -->
+    
     <section class="content">
 
       <!-- Default box -->
@@ -30,7 +31,41 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <h3><b>Berisi Form untuk membuat postingan pada place tertentu.</b></h3>
+        
+            <form id="form" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="region">Place<font color="red">*</font></label>
+              <select class="form-control" name="placeAdd" id="placeAdd">
+                <option value="def" selected disabled>- Select Place-</option>
+                <?php
+
+                  foreach ($place->result() as $row) {
+                    echo "<option value='$row->id_place'>$row->name - $row->category_name</option>";
+                  }
+                ?>
+              </select>
+            </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Title<font color="red">*</font></label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Category (Optional)</label>
+                <input type="text" class="form-control" id="category" name="category" placeholder="Enter Category">
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea">Post<font color="red">*</font></label>
+                <textarea class="form-control" id="postContent" name="postContent" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Upload Image</label>
+                <input type="file" class="form-control-file" id="file" name="file" aria-describedby="fileHelp" multiple>
+                <small id="fileHelp" class="form-text text-muted">Make sure your file extension is .jpg, .jpeg, or .png.</small>
+              </div>
+
+            
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
             
             </div>
             <!-- /.box-body -->
@@ -148,5 +183,39 @@
       </div>
       <!-- end modal edit -->
 <script type="text/javascript">
-
+var id_admin;
+   $('#form').submit(function(){
+            
+            
+            var form = $('#form')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            $.ajax({
+              url: '<?php echo base_url("Region/compose/insert");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                alert(data);
+                if(data=="berhasil"){
+                $('#form')[0].reset();
+                // $('#myModal').modal('hide');
+                 // location.reload();
+                  
+                    
+                   
+                }
+              },
+                  error: function(jqXHR, textStatus, errorThrown)
+                  {
+              console.log(jqXHR);
+              console.log(textStatus);
+              console.log(errorThrown);
+              alert('gagal');
+            }
+            })
+          
+            return false;
+        });
 </script>

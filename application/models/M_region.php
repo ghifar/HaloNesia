@@ -53,7 +53,7 @@ class M_region extends CI_Model {
 
 
     function json_placeByRegionId($id) {
-        $this->datatables->select('p.id_place as id,p.name as name, p.address as address, p.phone_number as phoneNumber, p.description as description, c.category_name as categoryName, c.category_code as categoryCode');
+        $this->datatables->select('p.id_place as id,p.name as name, p.address as address, p.phone_number as phoneNumber, p.description as description, c.category_name as categoryName, c.category_code as categoryCode,p.latitude as lat, p.longitude as lng');
         $this->datatables->from('place p');
         //$this->datatables->join('admin a','a.id_admin = p.id_admin');
         $this->datatables->join('reg_category rc', 'rc.id = p.id_reg_category');
@@ -88,7 +88,7 @@ class M_region extends CI_Model {
         //$this->datatables->where('a.id_role ', '3');
         $this->datatables->where('r.id', $id);
         $this->datatables->join('admin a','a.id_admin = p.id_admin','left outer');
-        $this->datatables->add_column('view', '<center><a class=\'btn btn-info btn-xs\' value=\'$1\' target=\'_blank\' href=\'http://www.google.com/maps/place/$2,$3\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></a> <button class=\'btn btn-success btn-xs\' value=\'$1\' onclick=\'edit(this.value)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button> <button class=\'btn btn-danger btn-xs\' value=\'$1\' onclick=\'hapus(this.value)\' title=\'Hapus Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-remove\'></span></button></center>', 'id,lat,lng');
+        $this->datatables->add_column('view', '<center><a class=\'btn btn-info btn-xs\' value=\'$1\' target=\'_blank\' href=\'http://www.google.com/maps/place/$2,$3\' title=\'Go to Location\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></a>  <button class=\'btn btn-danger btn-xs\' value=\'$1\' onclick=\'hapus(this.value)\' title=\'Delete Admin\' data-toggle="modal"><span class=\'glyphicon glyphicon-remove\'></span></button></center>', 'id,lat,lng');
         return $this->datatables->generate();
     }
 

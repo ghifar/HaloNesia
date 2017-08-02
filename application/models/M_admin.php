@@ -42,16 +42,17 @@ class M_admin extends CI_Model {
       $query = $this->db->get_where('admin',array('admin_login'=>$username));
       return $query->num_rows();
     }
-    function json_region() {
+    function json_adminRegion() {
         $this->datatables->select('a.id_admin as id, a.admin_login as username,a.admin_name as name, a.admin_email as email, r.region_code as region');
         $this->datatables->from('admin a');
         $this->datatables->join('region r','a.id_region = r.id');
+        $this->datatables->where("a.id_role = 2");
         $this->datatables->add_column('view', '<center><button class=\'btn btn-success btn-xs\' value=\'$1\' onclick=\'edit(this.value)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button> <button class=\'btn btn-danger btn-xs\' value=\'$1\' onclick=\'hapus(this.value)\' title=\'Hapus Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-remove\'></span></button></center>', 'id');
         return $this->datatables->generate();
     }
 
 
-    function json_place() {
+    function json_adminPlace() {
         $this->datatables->select('a.id_admin as id, a.admin_login as username,a.admin_name as name, a.admin_email as email, r.region_code as region, c.category_name as category, p.name as place');
         $this->datatables->from('place p');
         $this->datatables->join('admin a','a.id_admin = p.id_admin');

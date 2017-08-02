@@ -25,7 +25,7 @@ class PlaceAdmin extends CI_Controller {
 			$this->load->library('datatables');
 			$this->load->model(array('M_admin'));
 	        header('Content-Type: application/json');
-	        echo $this->M_admin->json_place();
+	        echo $this->M_admin->json_adminPlace();
 	    }
     
 }

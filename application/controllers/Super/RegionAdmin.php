@@ -25,7 +25,7 @@ class RegionAdmin extends CI_Controller {
 			$this->load->library('datatables');
 			$this->load->model(array('M_admin'));
 	        header('Content-Type: application/json');
-	        echo $this->M_admin->json_region();
+	        echo $this->M_admin->json_adminRegion();
 	    }
     public function insert(){
     	$username = strtolower(trim($this->input->post('user')));

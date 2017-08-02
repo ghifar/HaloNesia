@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="<?php echo base_url()."assets" ?>/bootstrap/css/bootstrap.min.css">
 
 
+  <!-- Dropzone js -->
+
+  <link rel="stylesheet" href="<?php echo base_url()."assets" ?>/dist/css/dropzone.min.css">
+  <link rel="stylesheet" href="<?php echo base_url()."assets" ?>/dist/css/basic.min.css">
+
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -32,6 +38,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Fine Uploader New/Modern CSS file
+    ====================================================================== -->
+
+      <link rel="stylesheet" href="<?php echo base_url()."assets" ?>/dist/css/fine-uploader-new.css">
+
+    <!-- Fine Uploader JS file
+    ====================================================================== -->
+    <script src="<?php echo base_url()."assets" ?>/dist/js/fine-uploader.js"></script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -51,7 +77,7 @@
   <!-- AdminLTE App -->
   <script src="<?php echo base_url()."assets" ?>/dist/js/app.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="<?php echo base_url()."assets" ?>/dist/js/demo.js"></script>\
+  <script src="<?php echo base_url()."assets" ?>/dist/js/demo.js"></script>
   <!-- Sparkline -->
   <script src="<?php echo base_url()."assets" ?>/plugins/sparkline/jquery.sparkline.min.js"></script>
   <!-- DataTables -->
@@ -74,6 +100,11 @@
   <script src="<?php echo base_url()."assets" ?>/plugins/datepicker/bootstrap-datepicker.js"></script>
   <!-- Vue.js -->
   <script src="https://unpkg.com/vue"></script>
+
+  <!-- dropzone js -->
+
+  <script src="<?php echo base_url()."assets" ?>/dist/js/dropzone.min.js"></script>
+  <script src="<?php echo base_url()."assets" ?>/dist/js/dropzone-amd-module.min.js"></script>
 
   <!-- end footer script -->
 

@@ -71,7 +71,7 @@
             <form id="form" enctype="multipart/form-data">
             <div class="form-group">
               <label for="nama">Category Code<font color="red">*</font></label>
-              <input type="text" maxlength="3" class="form-control" id="code" name="code" placeholder="Input Category Code" required>
+              <input type="text" maxlength="3" class="form-control" id="code" name="code" placeholder="Input Category Code" style="text-transform:uppercase" required>
             </div>
             <div class="form-group">
               <label for="nama">Category Name<font color="red">*</font></label>
@@ -116,7 +116,7 @@
               <form id="formEdit" enctype="multipart/form-data">
             <div class="form-group">
               <label for="nama">Category Code<font color="red">*</font></label>
-              <input type="text" maxlength="3" class="form-control" id="codeEdit" name="codeEdit" placeholder="Input Category Code" required>
+              <input type="text" maxlength="3" class="form-control" id="codeEdit" name="codeEdit" placeholder="Input Category Code" style="text-transform:uppercase"  required>
             </div>
             <div class="form-group">
               <label for="nama">Category Name<font color="red">*</font></label>

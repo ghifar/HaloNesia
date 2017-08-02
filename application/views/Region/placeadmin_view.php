@@ -30,7 +30,6 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <h3><b>Berisi List admin setiap place pada region ini, lengkap dengan CRUD</b></h3>
              <div class="box-header">
               <h3 class="box-title">Region Admin List HaloNesia</h3>
               <button type="button" class='pull-right btn btn-primary btn-sm' data-toggle="modal" data-target="#myModal" href='#'><i class="fa fa-plus"></i> Add Admin</button>
@@ -75,7 +74,7 @@
     <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Tutup"><span aria-hidden="true">&times;</span></button>
 
-    <h4 class="modal-title">Add Admin</h4>
+    <h4 class="modal-title">Add Admin Place</h4>
     </div>
           <div class="modal-body">
             <!--form start-->
@@ -214,7 +213,8 @@ var id_admin;
                           "data": "id",
                           "orderable": false
                       },
-                      {"data": "username"},
+                      {"data": "username",
+                      "defaultContent":" <strong><font color='red'><i> Admin not set </i>  </font></strong> "},
                       {"data": "name"},
                       {"data": "email"},
                       {"data": "place"},
@@ -250,8 +250,8 @@ var id_admin;
                 if(data=="berhasil"){
                 $('#form')[0].reset();
                 $('#myModal').modal('hide');
-                // reload_table();
-                location.reload();
+                reload_table();
+                // location.reload();
                 }
               },
                   error: function(jqXHR, textStatus, errorThrown)
@@ -265,65 +265,65 @@ var id_admin;
           
             return false;
         });
-  $('#formEdit').submit(function(){
+//   $('#formEdit').submit(function(){
           
-            var form = $('#formEdit')[0]; // You need to use standart javascript object here
-            var formData = new FormData(form);
-            formData.append('id',id_place);
-            $.ajax({
-              url: '<?php echo base_url("Region/placeAdmin/update");?>',
-              data: formData,
-              type: 'POST',
-              // THIS MUST BE DONE FOR FILE UPLOADING
-              contentType: false,
-              processData: false,
-              success: function(data){
-                alert(data);
-                if(data=="berhasil"){
-                $('#myModal2').modal('hide');
-                reload_table();
-                }
-              },
-            error: function(jqXHR, textStatus, errorThrown)
-            {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-        alert('gagal');
-      }
-            })
+//             var form = $('#formEdit')[0]; // You need to use standart javascript object here
+//             var formData = new FormData(form);
+//             formData.append('id',id_place);
+//             $.ajax({
+//               url: '<?php echo base_url("Region/placeAdmin/update");?>',
+//               data: formData,
+//               type: 'POST',
+//               // THIS MUST BE DONE FOR FILE UPLOADING
+//               contentType: false,
+//               processData: false,
+//               success: function(data){
+//                 alert(data);
+//                 if(data=="berhasil"){
+//                 $('#myModal2').modal('hide');
+//                 reload_table();
+//                 }
+//               },
+//             error: function(jqXHR, textStatus, errorThrown)
+//             {
+//         console.log(jqXHR);
+//         console.log(textStatus);
+//         console.log(errorThrown);
+//         alert('gagal');
+//       }
+//             })
           
-            return false;
-        });
+//             return false;
+//         });
+//  function edit(id){
+//   id_place = id;
+//    $.ajax({
+//         url : "<?php echo site_url('Region/placeAdmin/getPlace')?>",
+//         type: "POST",
+//         data: {'id':id},
+//         dataType: "JSON",
+//         success: function(data)
+//         {
+//           $('#usernameEdit').val(data.admin_login);
+//           $('#namaEdit').val(data.admin_name);
+//           $('#emailEdit').val(data.admin_email);
+//           $('#descriptionEdit').val(data.description);
+//           $('#latEdit').val(data.latitude);
+//           $('#longEdit').val(data.longitude);
+//           $('#myModal2').modal('show');
+//         },
+//             error: function (jqXHR, textStatus, errorThrown)
+//             {
+//               console.log(jqXHR);
+//         console.log(textStatus);
+//         console.log(errorThrown);
+//             }
+//       });
+//  }
   function reload_table()
 {
     $('#mytable').DataTable().ajax.reload(null,false); //reload datatable ajax
 }
- function edit(id){
-  id_place = id;
-   $.ajax({
-        url : "<?php echo site_url('Region/placeAdmin/getPlace')?>",
-        type: "POST",
-        data: {'id':id},
-        dataType: "JSON",
-        success: function(data)
-        {
-          $('#usernameEdit').val(data.admin_login);
-          $('#namaEdit').val(data.admin_name);
-          $('#emailEdit').val(data.admin_email);
-          $('#descriptionEdit').val(data.description);
-          $('#latEdit').val(data.latitude);
-          $('#longEdit').val(data.longitude);
-          $('#myModal2').modal('show');
-        },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-              console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-            }
-      });
- }
 
  function hapus(username){
  if(confirm('This will delete an Admin from selected place, Are you still want to delete this admin?'))
@@ -338,8 +338,7 @@ var id_admin;
               alert(data);
               if(data=="berhasil")
                 reload_table();
-              location.reload();
-              reload
+              
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

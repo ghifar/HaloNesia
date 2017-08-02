@@ -151,7 +151,7 @@
             
             <div class="form-group">
               <label for="sort">Region<font color="red">*</font></label>
-              <select class="form-control input-sm" id="regionEdit" name="regionEdit" placeholder="Sort" required="">
+              <select class="form-control input-sm" id="regionEdit" name="regionEdit" placeholder="Sort" disabled required="">
                         <option value="0" selected disabled>-Select Region-</option>
                         <?php
                           foreach ($region->result() as $row) {

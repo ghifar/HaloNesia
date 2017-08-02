@@ -1,5 +1,6 @@
 <?php
   $data = $admin->row();
+  $dataPlace = $place->row();
 ?>
 
 <!-- <!- - Content Wrapper. Contains page content -->
@@ -68,7 +69,7 @@
             <h3 class="box-title">Data Profil Admin</h3>
 
           </div>
-          <form id="form" class="form-horizontal ">
+          <form id="formUpdateNama" class="form-horizontal ">
           <div class="box-body">
              <div class="form-group col-md-12">
                 <label for="instansi" class="col-sm-2 control-label">Name :</label>
@@ -102,56 +103,63 @@
         <!-- /.box -->
       </div>
       <!-- /.col -->
-      <div class="col-md-9">
+     <div class="col-md-9">
        <!-- Default box -->
         <div class="box box-success">
           <div class="box-header with-border">
-            <h3 class="box-title">Data Place</h3>
+            <h3 class="box-title">Place Details</h3>
 
           </div>
-          <form id="form" class="form-horizontal ">
+          <form id="formUpdatePlace" class="form-horizontal ">
           <div class="box-body">
-             
              <div class="form-group col-md-12">
-                <label for="instansi" class="col-sm-2 control-label">Kantor Dinas ABC</label>
+                <label for="instansi" class="col-sm-2 control-label">Place Name :</label>
 
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="nama" name="nama" value="Kota A">
+                  <input type="text" class="form-control" id="nameUpdate" name="nameUpdate" value="<?php echo $dataPlace->name  ?>">
                 </div>
               </div>
               <div class="form-group col-md-12">
-                <label for="instansi" class="col-sm-2 control-label">Category :</label>
+                  <label for="nip" class="col-sm-2 control-label">Category :</label>
 
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="nama" name="nama" value="Pemerintahan">
-                </div>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="categoryUpdate" name="categoryUpdate" value="<?php echo $dataPlace->category_name  ?>" disabled>
+                  </div>
               </div>
               <div class="form-group col-md-12">
-                <label for="instansi" class="col-sm-2 control-label">Address :</label>
+                  <label for="nip" class="col-sm-2 control-label">Address :</label>
 
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="alamat" name="alamat" value="Jalan A no. 20, Bandung">
-                </div>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="addressUpdate" name="addressUpdate" value="<?php echo $dataPlace->address  ?>">
+                  </div>
               </div>
               <div class="form-group col-md-12">
-                <label for="instansi" class="col-sm-2 control-label">PhoneNumber :</label>
+                  <label for="nip" class="col-sm-2 control-label">Phone Number :</label>
 
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="no_telp" name="no_telp" value="1212121">
-                </div>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="phoneNumberUpdate" name="phoneNumberUpdate" value="<?php echo $dataPlace->phone_number  ?>">
+                  </div>
               </div>
               <div class="form-group col-md-12">
-                <label for="instansi" class="col-sm-2 control-label">Description :</label>
+                  <label for="nip" class="col-sm-2 control-label">Description :</label>
 
-                <div class="col-sm-8">
-                  <textarea class="form-control" id="desc" name="desc" value="">Place Description here
-                  </textarea>
-                </div>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="descritionUpdate" name="descriptionUpdate" value="<?php echo $dataPlace->description ?>">
+                  </div>
               </div>
+
+
+              <center>
+                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Save</button>
+                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Cancel</button>
+              </center>
 
           </div>
         </form>
-          
+          <div class="box-footer">
+            <small>Last Update: <?php echo $dataPlace->updated_at?></small>
+          </div>
+
           <!-- /.box-footer-->
         </div>
         <!-- /.box -->
@@ -183,14 +191,10 @@
             <span id="alertTitle" class="sr-only">Error:</span>
             <span id="alertBody">Enter a valid email address</span>
           </div>
-          <form id="form2" enctype="multipart/form-data">
+          <form id="formUpdateProfile" enctype="multipart/form-data">
           <div class="form-group">
             <label for="email">Email<font color="red">*</font></label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $data->admin_email?>" placeholder="Masukkan Email" required>
-          </div>
-          <div class="form-group">
-            <label for="email">No Telp<font color="red">*</font></label>
-            <input type="number" min="0" class="form-control" id="no_telp" name="no_telp" value="<?php //echo $data->no_telp?>1221" placeholder="No Telp." required>
           </div>
 
 
@@ -234,7 +238,7 @@
 
             <div class="form-group">
               <label for="usn">Username<font color="red">*</font></label>
-              <input type="text" class="form-control" id="username" name="username" value="" placeholder="Masukkan Username" required>
+              <input type="text" class="form-control" id="username" name="username" value="<?php echo $data->admin_login?>" disabled>
             </div>
             <div class="form-group">
               <label for="pwd1">Password Lama<font color="red">*</font></label>
@@ -263,3 +267,134 @@
 
  
   <!-- end modal -->
+
+  <script type="text/javascript">
+var id_admin;
+$('#formUpdateProfile').submit(function(){
+          
+            var form = $('#formUpdateProfile')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_admin);
+            $.ajax({
+              url: '<?php echo base_url("place/Home/updateProfile");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                alert(data);
+                if(data=="berhasil"){
+                $('#Modaledit').modal('hide');
+                location.reload();
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+          
+            return false;
+        });
+
+  $('#formUpdateNama').submit(function(){
+          
+            var form = $('#formUpdateNama')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_admin);
+            $.ajax({
+              url: '<?php echo base_url("place/Home/updateNama");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                // alert(data);
+                if(data=="berhasil"){
+                $('#formUpdateNama')[0].reload();
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+          
+            return false;
+        });
+
+   $('#formUpdatePlace').submit(function(){
+          
+            var form = $('#formUpdatePlace')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_admin);
+            $.ajax({
+              url: '<?php echo base_url("Place/Home/updatePlace");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                // alert(data);
+                if(data=="berhasil"){
+               $('#formUpdatePlace')[0].reload();
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+          
+            return false;
+        });
+
+      $('#form3').submit(function(){
+         var form = $('#form3')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_admin);
+            $.ajax({
+              url: '<?php echo base_url("Region/Home/update2");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                alert(data);
+                if(data=="berhasil"){
+                 $('#form3')[0].reset();
+                    $('#Modaleditakun').modal('toggle');
+                    $('#Modaleditakun').modal('hide');
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+          
+            return false;
+        });
+
+
+
+
+
+
+</script>

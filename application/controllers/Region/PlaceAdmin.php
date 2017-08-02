@@ -13,7 +13,7 @@ class PlaceAdmin extends CI_Controller {
 			$cek = $this->session->userdata('role');
 			if($cek == '2'){
 				$id= $this->session->userdata('region');
-				$data['place'] = $this->M_places->getRegionPlaces($id);
+				$data['place'] = $this->M_places->getPlacesNoAdminYet($id);
 				$this->load->view('header');
 				$this->load->view('region/placeadmin_view',$data);
 				$this->load->view('footer');
@@ -98,22 +98,13 @@ class PlaceAdmin extends CI_Controller {
     }
 
 
-	// function getPlace(){
+	//  function getPlace(){
 	// 	$id = $this->input->post('id');
 	// 	$data = $this->M_places->get(array('id_place'=>$id));
 	// 	echo json_encode($data->row());
+		
+
 	// }
-
-
-	 function getPlace(){
-		// $id = $this->input->post('region');
-		$id= $this->session->userdata('region');
-		$data = $this->M_admin->get(array('id_region'=>$id));
-		$admins = $data->row();
-		$admins->admin_password = null;
-		echo json_encode($admins);
-
-	}
 }
     
 

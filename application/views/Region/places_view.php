@@ -32,7 +32,6 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <h3><b>Berisi List place pada region ini, lengkap dengan CRUD</b></h3>
             <div class="box-header">
               <h3 class="box-title">Region Admin List HaloNesia</h3>
               <button type="button" class='pull-right btn btn-primary btn-sm' data-toggle="modal" data-target="#myModal" href='#'><i class="fa fa-plus"></i> Add Place</button>
@@ -74,7 +73,7 @@
     <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Tutup"><span aria-hidden="true">&times;</span></button>
 
-    <h4 class="modal-title">Add Region Admin</h4>
+    <h4 class="modal-title">Add Place</h4>
     </div>
           <div class="modal-body">
             <!--form start-->
@@ -154,7 +153,7 @@
               <div class="form-group">
               <label for="region">Category<font color="red">*</font></label>
               <select class="form-control" name="categoryEdit" id="categoryEdit">
-                <option value="def">- Select Category -</option>
+                <option value="def" disabled>- Select Category -</option>
                 <?php
 
                   foreach ($category->result() as $row) {
@@ -344,7 +343,7 @@ var id_place;
         dataType: "JSON",
         success: function(data)
         {
-          $('categoryEdit').val(data.id_reg_category);
+          $('#categoryEdit').val(data.id_reg_category);
           $('#namaEdit').val(data.name);
           $('#address').val(data.address);
           $('#phoneNumber').val(data.phone_number);

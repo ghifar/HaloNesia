@@ -1,5 +1,6 @@
 <?php
   $data = $admin->row();
+  $dataRegion = $region->row();
 ?>
 
 <!-- <!- - Content Wrapper. Contains page content -->
@@ -106,38 +107,45 @@
        <!-- Default box -->
         <div class="box box-success">
           <div class="box-header with-border">
-            <h3 class="box-title">Data Region</h3>
+            <h3 class="box-title">Region Data</h3>
 
           </div>
-          <form id="form" class="form-horizontal ">
+          <form id="formUpdateRegion" class="form-horizontal ">
           <div class="box-body">
              <div class="form-group col-md-12">
                 <label for="instansi" class="col-sm-2 control-label">Code :</label>
 
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="nama" name="nama" value="ABC">
+                <div class="col-sm-1">
+                  <input type="text" class="form-control" id="codeUpdate" name="codeUpdate" maxlength="3" minlength="3" style="text-transform:uppercase" value="<?php echo $dataRegion->region_code  ?>">
                 </div>
               </div>
-             <div class="form-group col-md-12">
-                <label for="instansi" class="col-sm-2 control-label">Name :</label>
-
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="nama" name="nama" value="Kota A">
-                </div>
-              </div>
-              
               <div class="form-group col-md-12">
-                <label for="instansi" class="col-sm-2 control-label">Description :</label>
+                  <label for="nip" class="col-sm-2 control-label">Name :</label>
 
-                <div class="col-sm-8">
-                  <textarea class="form-control" id="nama" name="nama" value="">Region Description here
-                  </textarea>
-                </div>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="nameUpdate" name="nameUpdate" value="<?php echo $dataRegion->region_name  ?>">
+                  </div>
               </div>
+               <div class="form-group col-md-12">
+                  <label for="nip" class="col-sm-2 control-label">Description :</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="descritionUpdate" name="descriptionUpdate" value="<?php echo $dataRegion->region_description ?>">
+                  </div>
+              </div>
+
+
+              <center>
+                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Save</button>
+                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Cancel</button>
+              </center>
 
           </div>
         </form>
-          
+          <div class="box-footer">
+            <small>Last Update: <?php echo $dataRegion->updated_at?></small>
+          </div>
+
           <!-- /.box-footer-->
         </div>
         <!-- /.box -->
@@ -207,20 +215,16 @@
     <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Tutup"><span aria-hidden="true">&times;</span></button>
 
-    <h4 class="modal-title">Edit Profile</h4>
+    <h4 class="modal-title">Edit Password</h4>
     </div>
           <div class="modal-body">
             <!--form start-->
-            <div id="alert" class="alert hidden" role="alert">
-              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              <span id="alertTitle" class="sr-only">Error:</span>
-              <span id="alertBody">Enter a valid email address</span>
-            </div>
+           
             <form id="form3" enctype="multipart/form-data">
 
             <div class="form-group">
               <label for="usn">Username<font color="red">*</font></label>
-              <input type="text" class="form-control" id="username" name="username" value="" placeholder="Masukkan Username" required>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" value="<?php echo $data->admin_login?>" disabled>
             </div>
             <div class="form-group">
               <label for="pwd1">Password Lama<font color="red">*</font></label>
@@ -268,6 +272,8 @@ $('#formUpdateProfile').submit(function(){
               success: function(data){
                 alert(data);
                 if(data=="berhasil"){
+                
+                $('#Modaledit').modal('toggle');
                 $('#Modaledit').modal('hide');
                 location.reload();
                 }
@@ -297,9 +303,9 @@ $('#formUpdateProfile').submit(function(){
               contentType: false,
               processData: false,
               success: function(data){
-                // alert(data);
+                alert(data);
                 if(data=="berhasil"){
-                location.reload();
+                $('#formUpdateNama')[0].reload();
                 }
               },
             error: function(jqXHR, textStatus, errorThrown)
@@ -313,6 +319,70 @@ $('#formUpdateProfile').submit(function(){
           
             return false;
         });
+
+   $('#formUpdateRegion').submit(function(){
+          
+            var form = $('#formUpdateRegion')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_admin);
+            $.ajax({
+              url: '<?php echo base_url("Region/Home/updateRegion");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                alert(data);
+                if(data=="berhasil"){
+                $('#formUpdateRegion')[0].reload();
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+          
+            return false;
+        });
+
+
+   $('#form3').submit(function(){
+         var form = $('#form3')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_admin);
+            $.ajax({
+              url: '<?php echo base_url("Region/Home/update2");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                alert(data);
+                if(data=="berhasil"){
+                 $('#form3')[0].reset();
+                    $('#Modaleditakun').modal('toggle');
+                    $('#Modaleditakun').modal('hide');
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+          
+            return false;
+        });
+
+
 
 
 

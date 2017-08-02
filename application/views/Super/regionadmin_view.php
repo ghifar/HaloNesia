@@ -73,6 +73,7 @@
             <div class="form-group">
               <label for="nama">Username<font color="red">*</font></label>
               <input type="text" minlength="6" class="form-control" id="user" name="user" placeholder="Input Username" required>
+              <small class="form-text text-muted">Your password will be just the same as your username. You can change it later.</small>
             </div>
             <div class="form-group">
               <label for="nama">Name<font color="red">*</font></label>
@@ -80,7 +81,7 @@
             </div>
             <div class="form-group">
               <label for="username">Email<font color="red">*</font></label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Input Region Description" required>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Input Email" required>
             </div>
             <div class="form-group">
               <label for="region">Region<font color="red">*</font></label>
@@ -93,6 +94,8 @@
                   }
                 ?>
               </select>
+              <small class="form-text text-muted"><a href="<?php echo base_url()."super/region"?>"  >Add more region?</a></small>
+
             </div>
             <!--end form-->
             <button type="submit" class="btn btn-primary" id="submit" style="float:right">Submit</button>

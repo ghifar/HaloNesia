@@ -29,6 +29,24 @@ class M_places extends CI_Model {
     public function get($parameterfilter=array()){
       return $this->db->get_where('place', $parameterfilter);
     }
+    public function getDetails($parameterfilter=array()){
+        $this->db->select('p.*, c.category_name');
+        $this->db->from('place p');
+        $this->db->join('reg_category rc','p.id_reg_category = rc.id');
+        $this->db->join('category c','rc.id_category = c.id');
+        $this->db->where($parameterfilter);
+        return $this->db->get();
+    }
+
+    
+
+    // public function getPlaceByRegionId($id_region()){
+    //   $this->db->select('')
+
+
+
+    //   return $this->db->get_where('place', $parameterfilter);
+    // }
 
 
     function getRegionPlaces($id_region){ 
@@ -37,7 +55,18 @@ class M_places extends CI_Model {
      $this->db->join('reg_category rc','rc.id = p.id_reg_category');
      $this->db->join('category c','rc.id_category = c.id'); 
      $this->db->where("rc.id_region = $id_region");
-     $this->db->where(array('p.id_admin' => NULL)); 
+     // $this->db->where(array('p.id_admin' => NULL)); 
+     return $this->db->get();
+    }
+
+    function getPlacesNoAdminYet($id_region){ 
+     $this->db->select('p.id_place, p.name,c.category_name'); 
+     $this->db->from('place p'); 
+     $this->db->join('reg_category rc','rc.id = p.id_reg_category');
+     $this->db->join('category c','rc.id_category = c.id'); 
+     $this->db->where("rc.id_region = $id_region");
+     $this->db->where("p.id_admin = ");
+     // $this->db->where(array('p.id_admin' => NULL)); 
      return $this->db->get();
     }
     

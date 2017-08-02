@@ -178,7 +178,7 @@
 
             <div class="form-group">
               <label for="usn">Username<font color="red">*</font></label>
-              <input type="text" class="form-control" id="username" name="username"  value="<?php echo $data->admin_login  ?>" placeholder="Masukkan Username" required>
+              <input type="text" class="form-control" id="username" name="username"  value="<?php echo $data->admin_login  ?>" disabled>
             </div>
             <div class="form-group">
               <label for="pwd1">Password Lama<font color="red">*</font></label>
@@ -187,11 +187,11 @@
             <div class="form-group">
               <label for="pwd2">Password Baru<font color="red">*</font></label><small>Kosongkan jika tidak diubah</small>
               <input type="password" class="form-control" id="new_password" name="new_password" value="">
-            </div>
+            <!-- </div>
             <div class="form-group">
               <label for="pwd2">Ulangi Password Baru<font color="red">*</font></label>
               <input type="password" class="form-control" id="new_password" name="new_password" value="">
-            </div>
+            </div> -->
             <!--end form-->
             <button type="submit" class="btn btn-primary" id="submit" style="float:right">Submit</button>
           </form>
@@ -259,9 +259,41 @@ $('#formEditProfile').submit(function(){
               contentType: false,
               processData: false,
               success: function(data){
-                // alert(data);
+                alert(data);
                 if(data=="berhasil"){
-                location.reload();
+                  $('#form')[0].reload();
+                // location.reload();
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+          
+            return false;
+        });
+
+  $('#form3').submit(function(){
+         var form = $('#form3')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_admin);
+            $.ajax({
+              url: '<?php echo base_url("Super/Home/updatePassword");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              success: function(data){
+                alert(data);
+                if(data=="berhasil"){
+                 $('#form3')[0].reset();
+                    $('#Modaleditakun').modal('toggle');
+                    $('#Modaleditakun').modal('hide');
                 }
               },
             error: function(jqXHR, textStatus, errorThrown)
