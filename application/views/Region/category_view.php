@@ -30,7 +30,7 @@
              
             </div>
             <div class="box-body">
-            <h3><b>Berisi List Category dari region ini, hanya berupa datatables tanpa create, update dan delete</b></h3>
+            <!-- <h3><b>Berisi List Category dari region ini, hanya berupa datatables tanpa create, update dan delete</b></h3> -->
             
               <table id="mytable" class="table table-bordered table-striped">
                 <thead>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13 Jul 2017 pada 17.48
--- Versi Server: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: Aug 08, 2017 at 01:02 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -39,23 +39,23 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `admin_login`, `admin_email`, `admin_password`, `admin_name`, `id_role`, `id_region`, `created_at`, `updated_at`) VALUES
-(17, 'superadmin', 'super@4nesia.com', '17c4520f6cfd1ab53d8745e84681eb49', 'Super Admin 1', 1, NULL, '2017-07-13 06:00:54', '2017-07-13 06:11:01'),
-(18, 'admin_mks', 'adminmks@4nesia.com', 'f6acdfeafe6aa84004631145bd0cd9d4', 'Admin Makassar', 2, 1, '2017-07-13 06:02:01', '2017-07-13 06:11:02'),
-(21, 'dinkes_mks', 'dinkesmks@gmail.com', 'b307c40a459bf9c39e557d506bbeb122', 'Admin Dinas Kesehatan Makassar', 3, NULL, '2017-07-13 06:02:01', '2017-07-13 06:02:01'),
-(22, 'dishub_mks', 'dishubmks@gmail.com', '200c6d6ea7beec2852b6b121da001986', 'Admin Dinas Perhubungan Makassar', 3, NULL, '2017-07-13 06:02:01', '2017-07-13 06:02:01'),
-(23, 'dinkes_bdg', 'dinkesbdg@gmail.com', '3e382e65fca695cd76ced80104e88c1a', 'Admin Dinas Kesehatan Bandung', 3, NULL, '2017-07-13 06:02:01', '2017-07-13 06:02:01'),
-(24, 'dishub_bdg', 'dishubdg@gmail.com', 'e3d79a5efdbd8ecc819d999d640e0167', 'Admin Dinas Perhubungan Bandung', 3, NULL, '2017-07-13 06:02:01', '2017-07-13 06:02:01'),
-(25, 'admin_mks2', 'mks2@gmail.com', 'accfdd033bb78ff1d27e048f7390d453', 'Admin Makassar 2', 2, 1, '2017-07-13 10:22:20', '2017-07-13 10:22:20'),
-(26, 'admin_bdg', 'adminbdg@4nesia.com', '59ef3010a4709e785eced1dc57829168', 'Admin Bandung', 2, 2, '2017-07-13 06:02:01', '2017-07-13 15:22:26');
+(17, 'super_admin', 'super@4nesia.com', 'ed49c3fed75a513a79cb8bd1d4715d57', 'SUPER ADMIN', 1, NULL, '2017-07-13 06:00:54', '2017-08-02 14:29:44'),
+(18, 'admin_mks', 'adminmks@4nesia.com', 'f6acdfeafe6aa84004631145bd0cd9d4', 'Admin Makassar', 2, 1, '2017-07-13 06:02:01', '2017-08-02 14:33:46'),
+(22, 'dishub_mks', 'dishubmksku@gmail.com', '200c6d6ea7beec2852b6b121da001986', 'Admin Dinas Perhubungan Makassar', 3, 1, '2017-07-13 06:02:01', '2017-08-02 15:58:43'),
+(30, 'admin_bdg', 'bandung@gmail.com', '59ef3010a4709e785eced1dc57829168', 'Admin Bandung', 2, 2, '2017-07-15 16:24:05', '2017-08-02 08:49:23'),
+(33, 'admin_jkt', 'adminjtk@gmail.com', 'c3241626ae48d6f8caf80af28b2fe8c2', 'Admin Jakarta', 2, 5, '2017-08-02 08:49:04', '2017-08-02 08:49:04'),
+(34, 'rs_ibnusina', 'rs_ibnusina@gmail.com', '6bbadf79f972ddb6e060bebd52f9fb8d', 'Admin Rumah Sakit Ibnu Sina', 3, 1, '2017-08-02 09:18:02', '2017-08-02 09:18:02'),
+(35, 'dishub_bdg', 'dishub_bdg@gmail.com', 'e3d79a5efdbd8ecc819d999d640e0167', 'Admin Dinas Perhubungan Kota Bandung', 3, 2, '2017-08-02 09:21:27', '2017-08-02 09:21:27'),
+(36, 'dishub_jkt', 'dishub_jkt@gmail.com', '0615d04a4047c6d9ddb9cf807b7c93e4', 'Admin Dinas Perhubungan Kota Jakarta', 3, 5, '2017-08-02 09:25:41', '2017-08-02 09:25:41');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -68,17 +68,37 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `category_code`, `category_name`, `category_description`, `created_at`, `updated_at`) VALUES
 (1, 'GOV', 'Pemerintahan', '0', '2017-05-24 08:31:10', '2017-07-13 08:58:59'),
-(2, 'HLT', 'Kesehatan', '0', '2017-05-24 08:31:10', '2017-07-13 08:51:12');
+(2, 'HLT', 'Kesehatan', '0', '2017-05-24 08:31:10', '2017-08-02 09:22:50');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comment`
+-- Table structure for table `coba`
+--
+
+CREATE TABLE `coba` (
+  `id` int(11) NOT NULL,
+  `file_url` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `coba`
+--
+
+INSERT INTO `coba` (`id`, `file_url`) VALUES
+(1, 'seagate_with_usb33.PNG'),
+(2, 'seagate_with_usb34.PNG'),
+(3, 'seagate_with_usb35.PNG');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -95,7 +115,7 @@ CREATE TABLE `comment` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `files`
+-- Table structure for table `files`
 --
 
 CREATE TABLE `files` (
@@ -109,7 +129,7 @@ CREATE TABLE `files` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `place`
+-- Table structure for table `place`
 --
 
 CREATE TABLE `place` (
@@ -120,44 +140,53 @@ CREATE TABLE `place` (
   `address` varchar(100) NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `id_admin` int(11) NOT NULL,
-  `id_reg_category` int(11) NOT NULL,
+  `id_admin` int(11) DEFAULT NULL,
+  `id_reg_category` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `place`
+-- Dumping data for table `place`
 --
 
 INSERT INTO `place` (`id_place`, `name`, `description`, `phone_number`, `address`, `latitude`, `longitude`, `id_admin`, `id_reg_category`, `created_at`, `updated_at`) VALUES
-(1, 'Dinas Kesehatan Kota Makassar', 'Kantor Dinas Kesehatan Kota Makassar', '411112', 'Jl. Teduh Bersinar No.1, Gn. Sari, Rappocini, Kota Makassar, Sulawesi Selatan 90221', -5.185859, 119.441356, 21, 1, '2017-07-13 06:20:10', '2017-07-13 06:20:10'),
-(2, 'Dinas Perhubungan Kota Makassar', 'Kantor Dinas Perhubungan Kota Makassar', '411112', 'Jl. Mallengkeri No.18, Mangasa, Tamalate, Kota Makassar, Sulawesi Selatan 90221', -5.188224, 119.440117, 22, 1, '2017-07-13 06:20:10', '2017-07-13 06:20:10'),
-(3, 'Dinas Kesehatan Kota Bandung', 'Kantor Dinas Kesehatan Kota Bandung', '411112', 'Jl Supratman No 73 Citarum Bandung, Cihapit, Bandung Wetan, Bandung City, West Java 40114', -6.9012519, 107.626077, 23, 5, '2017-07-13 06:20:10', '2017-07-13 06:26:25'),
-(4, 'Dinas Perhubungan Kota Bandung', 'Kantor Dinas Perhubungan Kota Bandung', '411112', 'Jl. Soekarno Hatta No.205, Situsaeur, Bojongloa Kidul, Kota Bandung, Jawa Barat 40233', -6.9462177, 107.5934753, 24, 5, '2017-07-13 06:20:10', '2017-07-13 06:27:48');
+(2, 'Dishub Makassar', 'inni description', '010101201291', 'jalan dishub Makassar', 2323232, 119.440117, 22, 1, '2017-07-13 06:20:10', '2017-08-02 09:10:47'),
+(24, 'Rumah Sakit Ibnu Sina', 'ini adalah rumah sakit', '0411', 'jl. jendral m yusuf', -5.132794, 119.416496, 34, 8, '2017-08-02 09:14:34', '2017-08-02 09:18:02'),
+(25, 'Dinas Perhubungan Kota Bandung', 'ini adalah dinas perhubungan kota bandung', '021', 'jl. dago', 10101010, 101010101, 35, 5, '2017-08-02 09:20:32', '2017-08-02 09:21:27'),
+(26, 'Dinas Perhubungan Kota Jakarta', 'ini adalah dinasnya jakarta', '022', 'jl jakarta', 191919191, 919191919, 36, 11, '2017-08-02 09:24:58', '2017-08-02 09:25:41'),
+(28, 'Kementrian Perhubungan Makassar', 'ini description kementrian', '0818181881', 'jalan kementrian', 1919191, 1919191, NULL, 1, '2017-08-02 14:57:58', '2017-08-02 15:33:32');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
   `id_post` int(11) NOT NULL,
-  `post_atuhor` varchar(100) NOT NULL,
+  `post_author` varchar(100) NOT NULL,
   `post_title` varchar(100) NOT NULL,
   `post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `post_content` text NOT NULL,
-  `post_category` varchar(100) NOT NULL,
+  `post_category` varchar(100) DEFAULT NULL,
   `id_place` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id_post`, `post_author`, `post_title`, `post_date`, `post_content`, `post_category`, `id_place`, `created_at`, `updated_at`) VALUES
+(16, 'Admin Dinas Perhubungan Makassarr', 'Title Postingan Dishub Makassarr', '2017-07-25 06:02:42', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum', 'cateegory postt', 2, '2017-07-25 06:02:42', '2017-08-02 16:03:31'),
+(18, 'Admin Dinas Perhubungan Makassarr', 'Title Postingan Dishub Makassar Ke-3 edited', '2017-07-25 06:05:02', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum', 'cateegory post', 2, '2017-07-25 06:05:02', '2017-07-28 15:07:07');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `region`
+-- Table structure for table `region`
 --
 
 CREATE TABLE `region` (
@@ -172,17 +201,18 @@ CREATE TABLE `region` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `region`
+-- Dumping data for table `region`
 --
 
 INSERT INTO `region` (`id`, `region_code`, `region_name`, `region_description`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES
-(1, 'MKS', 'Makassar', 'City of Makassar', -5.147665, 119.432731, '2017-05-24 08:30:45', '2017-07-13 08:23:07'),
-(2, 'BDG', 'Bandung', 'City of Bandung', -6.917464, 107.619123, '2017-05-24 08:30:45', '2017-07-13 08:59:38');
+(1, 'MKS', 'Makassar', 'City of Makassarr', -5.147665, 119.432731, '2017-05-24 08:30:45', '2017-08-02 14:03:12'),
+(2, 'BDG', 'Bandung', 'City of Bandung', -6.917464, 107.619123, '2017-05-24 08:30:45', '2017-07-15 16:24:17'),
+(5, 'CGK', 'Jakarta', 'Jakarta              ', 1212, 1212, '2017-07-15 16:27:02', '2017-07-15 16:27:02');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reg_category`
+-- Table structure for table `reg_category`
 --
 
 CREATE TABLE `reg_category` (
@@ -194,19 +224,19 @@ CREATE TABLE `reg_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `reg_category`
+-- Dumping data for table `reg_category`
 --
 
 INSERT INTO `reg_category` (`id`, `id_region`, `id_category`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2017-05-24 08:31:25', '2017-05-24 08:31:25'),
 (5, 2, 1, '2017-07-13 06:25:39', '2017-07-13 06:25:39'),
-(6, 2, 2, '2017-07-13 06:25:39', '2017-07-13 06:25:39'),
-(8, 1, 2, '2017-07-13 14:11:33', '2017-07-13 14:11:33');
+(8, 1, 2, '2017-07-13 14:11:33', '2017-07-13 14:11:33'),
+(11, 5, 1, '2017-07-15 16:27:33', '2017-07-15 16:27:33');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reviews`
+-- Table structure for table `reviews`
 --
 
 CREATE TABLE `reviews` (
@@ -224,7 +254,7 @@ CREATE TABLE `reviews` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role_admin`
+-- Table structure for table `role_admin`
 --
 
 CREATE TABLE `role_admin` (
@@ -233,7 +263,7 @@ CREATE TABLE `role_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `role_admin`
+-- Dumping data for table `role_admin`
 --
 
 INSERT INTO `role_admin` (`id`, `type`) VALUES
@@ -244,7 +274,7 @@ INSERT INTO `role_admin` (`id`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -279,6 +309,12 @@ ALTER TABLE `admin`
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `category_code` (`category_code`);
+
+--
+-- Indexes for table `coba`
+--
+ALTER TABLE `coba`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `comment`
@@ -353,12 +389,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `coba`
+--
+ALTER TABLE `coba`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `comment`
 --
@@ -373,22 +414,22 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
-  MODIFY `id_place` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_place` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `region`
 --
 ALTER TABLE `region`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `reg_category`
 --
 ALTER TABLE `reg_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
@@ -405,51 +446,51 @@ ALTER TABLE `role_admin`
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `admin`
+-- Constraints for table `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_region_fk` FOREIGN KEY (`id_region`) REFERENCES `region` (`id`),
+  ADD CONSTRAINT `admin_region_fk` FOREIGN KEY (`id_region`) REFERENCES `region` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `admin_role_fk` FOREIGN KEY (`id_role`) REFERENCES `role_admin` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_posts_fk` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comment_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `files`
+-- Constraints for table `files`
 --
 ALTER TABLE `files`
   ADD CONSTRAINT `files_posts_fk` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `place`
+-- Constraints for table `place`
 --
 ALTER TABLE `place`
-  ADD CONSTRAINT `place_admin_fk` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`),
-  ADD CONSTRAINT `place_regcategory_fk` FOREIGN KEY (`id_reg_category`) REFERENCES `reg_category` (`id`);
+  ADD CONSTRAINT `place_admin_fk` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `place_regcategory_fk` FOREIGN KEY (`id_reg_category`) REFERENCES `reg_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `posts`
+-- Constraints for table `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_place_fk` FOREIGN KEY (`id_place`) REFERENCES `place` (`id_place`);
+  ADD CONSTRAINT `posts_place_fk` FOREIGN KEY (`id_place`) REFERENCES `place` (`id_place`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `reg_category`
+-- Constraints for table `reg_category`
 --
 ALTER TABLE `reg_category`
   ADD CONSTRAINT `fk_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`),
   ADD CONSTRAINT `fk_region` FOREIGN KEY (`id_region`) REFERENCES `region` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `reviews`
+-- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_place_fk` FOREIGN KEY (`id_place`) REFERENCES `place` (`id_place`) ON DELETE CASCADE ON UPDATE CASCADE,
